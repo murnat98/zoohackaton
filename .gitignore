@@ -1,3 +1,5 @@
 /env
 config.ini
 /.idea
+/core/__pycache__
+/zoohackaton/__pycache
