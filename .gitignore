@@ -3,3 +3,4 @@ config.ini
 /.idea
 /core/__pycache__
 /zoohackaton/__pycache__
+/core/migrations/__pycache__
