@@ -52,3 +52,13 @@ ymaps.ready(function () {
         .add(myPlacemark)
         .add(myPlacemarkWithContent);
 });
+
+var chatSocket = new WebSocket('ws://localhost:8080/frontend/');
+
+chatSocket.onmessage = function (e) {
+    console.log(e.data);
+};
+
+chatSocket.onclose = function (e) {
+    console.error('Chat socket closed unexpectedly');
+};
