@@ -4,3 +4,4 @@ config.ini
 /core/__pycache__
 /zoohackaton/__pycache__
 /core/migrations/__pycache__
+/ws/__pycache__
