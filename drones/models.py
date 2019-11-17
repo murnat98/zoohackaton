@@ -5,8 +5,7 @@ class Drones(models.Model):
     """
     Model, storing old drone information.
     """
-    latitude = models.FloatField(name='latitude', verbose_name='latitude', blank=True)
-    longitude = models.FloatField(name='longitude', verbose_name='longitude', blank=True)
+    drone_id = models.PositiveIntegerField(name='drone_id', verbose_name='Drone number', unique=True)
 
     def __str__(self):
         return 'Drone #%d' % self.id
