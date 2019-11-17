@@ -7,7 +7,7 @@ function create_new_drone(drone) {
         '<div style="color: #FFFFFF; font-weight: bold;">' + drone.status + '</div>'
     );
 
-    var created_drone = new ymaps.Placemark([55.855825, 37.617298], {
+    var created_drone = new ymaps.Placemark([drone.latitude, drone.longtitude], {
         balloonContentHeader: '<span class="description">Drone #' + drone.drone_id + '</span>',
         hintContent: 'Drone #' + drone.drone_id
     }, {
