@@ -5,3 +5,5 @@ config.ini
 /zoohackaton/__pycache__
 /core/migrations/__pycache__
 /ws/__pycache__
+/drones/__pycache__
+/drones/migrations/__pycache__
