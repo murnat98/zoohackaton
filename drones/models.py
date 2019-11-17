@@ -8,7 +8,7 @@ class Drones(models.Model):
     drone_id = models.PositiveIntegerField(name='drone_id', verbose_name='Drone number', unique=True)
 
     def __str__(self):
-        return 'Drone #%d' % self.id
+        return 'Drone #%d' % self.drone_id
 
     class Meta:
         verbose_name = 'Drone'
