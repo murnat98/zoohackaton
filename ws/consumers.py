@@ -1,7 +1,9 @@
+import json
+
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
-front_channel = ''
+group_name = 'user_group'
 
 
 class DroneConsumer(WebsocketConsumer):
@@ -16,8 +18,18 @@ class DroneConsumer(WebsocketConsumer):
         """
 
     def receive(self, text_data=None, bytes_data=None):
-        async_to_sync(self.channel_layer.send)(
-            front_channel,
+        drone = json.loads(text_data)
+        drone_id = drone['drone_id']
+
+        # try:
+        #     Drones.objects.get(id=drone_id)
+        # except Drones.DoesNotExist:
+        #     self.send()
+        # else:
+        #     pass
+
+        async_to_sync(self.channel_layer.group_send)(
+            group_name,
             {
                 'type': 'front',
                 'data': text_data
@@ -28,12 +40,17 @@ class DroneConsumer(WebsocketConsumer):
 
 class FrontendConsumer(WebsocketConsumer):
     def connect(self):
-        global front_channel
-        front_channel = self.channel_name
+        async_to_sync(self.channel_layer.group_add)(
+            group_name,
+            self.channel_name
+        )
         super().connect()
 
     def front(self, event):
         self.send(event['data'])
 
     def disconnect(self, code):
-        pass
+        async_to_sync(self.channel_layer.group_discard)(
+            group_name,
+            self.channel_name
+        )
